@@ -1,0 +1,50 @@
+html, body{
+  position: relative;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow-x: hidden;
+  font-family: $defaultFont;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wf-poppins-n3-active body{
+  font-family: $defaultFont;
+}
+
+*{
+  box-sizing: border-box;
+  outline-width: thin;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+h3{
+  font-weight: normal;
+}
+
+abbr{
+  text-decoration: none;
+}
+
+figure{
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,33 @@
+svg:not(.dflt) {
+
+  path{
+    fill: inherit;
+    // stroke: inherit;
+    // stroke-width: inherit;
+    transform: inherit;
+  }
+
+  line{
+    fill:none;
+    stroke-linejoin:round;
+    stroke-width: inherit;
+    stroke:inherit;
+  }
+
+  polyline{
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0;
+  }
+
+  circle{
+    fill:none;
+    stroke-linejoin:round;
+    stroke-width: inherit;
+    stroke:inherit;
+  }
+
+}
+
+.icons{
+  display: none;
+}

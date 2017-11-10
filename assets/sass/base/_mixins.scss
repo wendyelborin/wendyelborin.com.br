@@ -1,0 +1,101 @@
+/*********************************************************************
+*  =Colorful links
+*
+*********************************************************************/
+
+@mixin colorful-links($color) {
+  @include single-transition(color, .1s, ease-out);
+
+  color: $color;
+
+  &:visited { color: $color; }
+  &:hover   { color: adjust-color($color, $lightness: +10%); }
+  &:active  { color: adjust-color($color, $lightness: -5%); }
+}
+
+/*********************************************************************
+*  =Pseudo icon mixin
+*********************************************************************/
+
+@mixin pseudo-icon-mixin($width, $height) {
+    @extend %pseudo_icon;
+    width: $width;
+    height: $height;
+}
+
+
+/*********************************************************************
+*  Retina sprite
+*********************************************************************/
+
+@mixin background($sprite_name, $name) {
+ @include background-size(ceil(image-width(sprite-path($sprite_name)) / 2) auto);
+ background-image: sprite-url($sprite_name);
+ background-repeat: no-repeat;
+ height: (image-height(sprite-file($sprite_name, $name)) / 2);
+ width: (image-width(sprite-file($sprite_name, $name)) / 2);
+ background-position: 0 round(nth(sprite-position($sprite_name, $name), 2) / 2);
+}
+
+
+/*********************************************************************
+*  =Font smooth
+*********************************************************************/
+@mixin font-smoothing($value: antialiased) {
+ @if $value == antialiased {
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+ }
+ @else {
+   -webkit-font-smoothing: subpixel-antialiased;
+   -moz-osx-font-smoothing: auto;
+ }
+}
+
+
+
+/*********************************************************************
+*  =Clearfix
+*********************************************************************/
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+/*********************************************************************
+*  =Responsive
+*********************************************************************/
+
+@mixin responsive($width: $ms-small, $min-max: 'min') {
+    @media (#{$min-max}-width: $width) {
+        @content;
+    }
+}
+
+@mixin responsive-orientation($width: $ms-small, $orientation: landscape, $min-max: 'min') {
+    @media only screen and (#{$min-max}-width: $width) and (orientation: $orientation) {
+        @content;
+    }
+}
+
+/*********************************************************************
+*  =Gradient
+*********************************************************************/
+@mixin gradient-vertical($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Opera 12
+  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
+}
+@mixin gradient-horizontal($start-color: #555, $end-color: #333, $start-percent: 0%, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+  background-image: -o-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Opera 12
+  background-image: linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=1); // IE9 and down
+}
